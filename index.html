@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;400&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/fbf118939f.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="css/style.css">
+    <title>Pomodoro</title>
+</head>
+<body>
+
+
+
+    <div class="main-section main-bg-tomato">
+
+        <div class="main-nav pomo-nav">
+            <div class="logo">
+                <h3><i class="fa-solid fa-circle-check"></i> Pomofocus</h3>        
+            </div>
+    
+            <div class="nav-menu">
+                <button class="btn-bg-pink btn-sm-icon nav-button">
+                    <i class="fa-solid fa-chart-simple"></i> Report
+                </button>
+
+                <button class="btn-bg-pink btn-sm-icon nav-button">
+                    <i class="fa-solid fa-gear"></i> Settings
+                </button>
+
+                <button class="btn-bg-pink btn-sm-icon nav-button">
+                    <i class="fa-solid fa-circle-user"></i> Login
+                </button>
+            </div>
+        </div>
+
+        <div class="clock-wrapper clock-bg-tomato">
+
+            <div class="clock-wrapper__container">
+
+                <div class="tabs">
+                    <button class="btn-sm active-tomato btn-bg-transparent" id="pomo-tab-btn">Pomodoro</button>
+                    <button class="btn-sm btn-bg-transparent" id="shortbreak-tab-btn">Short Break</button>
+                    <button class="btn-sm btn-bg-transparent" id="longbreak-tab-btn">Long Break</button>
+                </div>
+        
+        
+                <div class="pomodoro-tab">
+                    <div class="countdown-pomodoro timer">
+                        <h1 id="countdown-text" class="pausing">25:00</h1>
+                    </div>
+            
+                    <button class="btn-lg btn-bg-white btn-3d-white pomo-btn" id="countdown-btn">
+                        Start 
+                    </button>
+
+                    <i class="fa-solid fa-forward-step fa-2x" id="icon-countdown-btn"></i>
+                </div>
+
+
+
+            </div>
+
+    
+        </div>
+    
+        <div class="note">
+            <div class="note__container pomo-note">
+                <p class="hashtag pomo-hashtag" id="hashtag-note">#1</p>
+                <p class="note-message">Time to focus !</p>
+            </div>
+        </div>
+
+        <div class="tasks">
+            <div class="tasks__title tasks__title--pomo">
+                <p>Tasks</p>
+
+                <i class="fa-solid fa-ellipsis-vertical fa-1.5x"></i>
+            </div>
+
+            <div class="tasks__adding">
+                <button class="btn-xl btn-bg-dark-tomato" id="ask-task-btn">
+                    <i class="fa-solid fa-circle-plus icon-plus"></i>
+                    Add Task
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="js/main.js"></script>
+</body>
+</html>
