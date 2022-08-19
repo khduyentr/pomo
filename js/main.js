@@ -50,31 +50,44 @@ function releaseCountdownButton() {
   countdownBtn.style.top = "250px";
 }
 
-function handleClock() {
-  if (countdownText.classList.contains("pausing")) {
-    // deal with this first
-
-    // handle the button animation
-    pressCountdownButton();
-    // remove the pausing class
+function pauseClock() {
     countdownText.classList.toggle("pausing");
-
-    // update the clock countdown animation
-    myCountdownInterval = setInterval(updateClock, 1000);
-  } else {
-    // add the pausing class
-    countdownText.classList.toggle("pausing");
-
-    // save the current time to the screen
-    let currentTimes = updateClock();
-    console.log(currentTimes);
-
-    // clear the countdown interval
-    clearInterval(myCountdownInterval);
-
-    //alert('Clock is already running');
+    window.clearInterval(myCountdownInterval);
     releaseCountdownButton();
-  }
+}
+
+function runClock() {
+    pressCountdownButton();
+    countdownText.classList.toggle("pausing");
+    myCountdownInterval = window.setInterval(updateClock, 1000);
+}
+
+function handleClock() {
+
+    // the clock is paused
+    if (countdownText.classList.contains("pausing")) {
+        // pressCountdownButton();
+        // countdownText.classList.toggle("pausing");
+        // myCountdownInterval = window.setInterval(updateClock, 1000);
+        runClock();
+    } 
+    // the clock is running 
+    else {
+        // countdownText.classList.toggle("pausing");
+        // window.clearInterval(myCountdownInterval);
+        // releaseCountdownButton();
+        pauseClock();
+    }
+}
+
+function resetClock(min = 25) {
+    totalSeconds = min * 60;
+    
+    var minutes = min < 10 ? "0" + min : min;
+    countdownText.innerHTML = `${minutes}:00`;
+
+    myCountdownInterval = window.setInterval(updateClock, 1000);
+    window.clearInterval(myCountdownInterval);
 }
 
 countdownBtn.addEventListener("click", handleClock);
@@ -202,6 +215,9 @@ function handleShortBreakUpdate() {
     }
     addShortBreakTheme();
     currentTab = shortbreakTabName;
+
+    pauseClock();
+    resetClock(5);
 }
 
 function handleLongBreakUpdate() {
@@ -213,6 +229,9 @@ function handleLongBreakUpdate() {
     }
     addLongBreakTheme();
     currentTab = longbreakTabName;
+
+    pauseClock();
+    resetClock(15);
 }
 
 function handlePomoUpdate() {
@@ -224,6 +243,9 @@ function handlePomoUpdate() {
     }
     addPomoTheme();
     currentTab = pomoTabName;
+
+    pauseClock();
+    resetClock(); 
 }
 
 shortbreakButton.addEventListener("click", handleShortBreakUpdate);
