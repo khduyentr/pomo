@@ -84,10 +84,53 @@
             </div>
 
             <div class="tasks__adding">
+
+                <ul class="task__list">
+                    <li class="task__item">
+
+                        <span class="task__item__left">
+                            <i class="fa-solid fa-circle-check"></i>
+                            <p class="task__item__title">Example task 2</p>
+                        </span>
+
+                        <span class="task__item__right">
+                            <p class="task__item__section"><span class="task__item__section--done">0</span> / 1</p>
+                            <i class="fa-solid fa-ellipsis-vertical fa-1.5x"></i>
+                        </span>
+                    </li>
+                </ul>
+
                 <button class="btn-xl btn-bg-dark-tomato" id="ask-task-btn">
                     <i class="fa-solid fa-circle-plus icon-plus"></i>
                     Add Task
                 </button>
+
+                <form class="task__form">
+
+                    <div class="task__form__info">
+                        <div>
+                            <input type="text" placeholder="What are you working on ?">
+                        </div>
+    
+                        <div>
+                            <label>Est Pomodoros</label>
+                            <input type="number" placeholder="1">
+                        </div>
+    
+                        <div>
+                            <p>+ Add Note</p>
+                            <p>+ Add Project</p>
+                        </div>
+                    </div>
+
+                    <div class="task__form__bottom">
+                        <button class="btn-sm">Cancel</button>
+                        <button class="btn-sm">Save</button>
+                    </div>
+
+
+                </form>
+
             </div>
         </div>
     </div>

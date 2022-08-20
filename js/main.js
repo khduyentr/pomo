@@ -7,7 +7,11 @@ const clockWrapper = document.querySelector(".clock-wrapper");
 const askTaskButton = document.getElementById("ask-task-btn");
 
 let myCountdownInterval;
+
 let startingMinutes = 25;
+let shortbreakTime = 5;
+let longbreakTime = 15;
+
 let totalSeconds = startingMinutes * 60;
 
 const clickAudio = new Audio();
@@ -66,16 +70,11 @@ function handleClock() {
 
     // the clock is paused
     if (countdownText.classList.contains("pausing")) {
-        // pressCountdownButton();
-        // countdownText.classList.toggle("pausing");
-        // myCountdownInterval = window.setInterval(updateClock, 1000);
+
         runClock();
     } 
     // the clock is running 
     else {
-        // countdownText.classList.toggle("pausing");
-        // window.clearInterval(myCountdownInterval);
-        // releaseCountdownButton();
         pauseClock();
     }
 }
@@ -217,7 +216,7 @@ function handleShortBreakUpdate() {
     currentTab = shortbreakTabName;
 
     pauseClock();
-    resetClock(5);
+    resetClock(shortbreakTime);
 }
 
 function handleLongBreakUpdate() {
@@ -231,7 +230,7 @@ function handleLongBreakUpdate() {
     currentTab = longbreakTabName;
 
     pauseClock();
-    resetClock(15);
+    resetClock(longbreakTime);
 }
 
 function handlePomoUpdate() {
