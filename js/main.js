@@ -26,6 +26,51 @@ let totalSeconds = startingMinutes * 60;
 const clickAudio = new Audio();
 clickAudio.src = "../audio/click.mp3";
 
+class TaskItem {
+
+    #title;
+    #estSession;
+    #note = '';
+    #doneSession = 0;
+
+    static id = 0;
+
+    constructor(title, estSession, note = '') {
+        this.#title = title;
+        this.#estSession = estSession;
+        this.#note = note;
+    }
+
+    get doneSession() {
+        return this.#doneSession;
+    }
+
+    get estSession() {
+        return this.#estSession;
+    }
+
+    set estSession(msg) {
+        this.#estSession = msg;
+    }
+
+    get title() {
+        return this.#title;
+    }
+
+    set title(msg) {
+        this.#title = msg;
+    }
+
+    get note() {
+        return this.#note;
+    }
+
+    set note(newNote) {
+        this.#note = newNote;
+    }
+
+}
+
 function updateClock() {
   let minutes = Math.floor(totalSeconds / 60);
   let seconds = totalSeconds % 60;
@@ -275,23 +320,89 @@ function closeForm() {
     addTaskButton.style.display = 'block';
 }
 
+// create an task item li 
+function createTaskItem(taskObj) {
+    if (taskObj.note === '') {
+        return `                    
+            <span class="task__item__left">
+                <i class="fa-solid fa-circle-check"></i>
+                <p class="task__item__title">${taskObj.title}</p>
+            </span>
+
+            <span class="task__item__right">
+                <p class="task__item__section"><span class="task__item__section--done">${taskObj.doneSession}</span> / <span class="task__item__section--est">${taskObj.estSession}</span></p>
+                <i class="fa-solid fa-ellipsis-vertical fa-1.5x"></i>
+            </span>
+        `
+    } else {
+        return `
+            <div>
+                <span class="task__item__left">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <p class="task__item__title">${taskObj.title}</p>
+                </span>
+
+                <span class="task__item__right">
+                    <p class="task__item__section"><span class="task__item__section--done">${taskObj.doneSession}</span> / <span class="task__item__section--est">${taskObj.estSession}</span></p>
+                    <i class="fa-solid fa-ellipsis-vertical fa-1.5x"></i>
+                </span>
+            </div>
+
+            <div class="task__item__note">
+                <p>${taskObj.note}</p>
+            </div>
+        `;
+    }
+}
+
+
+
 function handleTaskOperation(e) {
     const sessionInput = document.querySelector('#session-input');
-    const noteInput = document.querySelector('#note');
+
+    const taskList = document.querySelector('.task__list');
 
 
     if (e.target.closest('#cancel-form-btn')) {
         closeForm();
     } else if (e.target.closest('#save-form-btn')) {
-        console.log(e.target);
+        // code right here 
+
+        // create and add task item to task list 
+        const title = document.querySelector('#title-input');
+        const estSession = document.querySelector('#session-input');
+        const note = document.querySelector('#note textarea');
+
+        const taskItem = new TaskItem(
+            title.value, 
+            estSession.value, 
+            note.value.length === 0 ? '' : note.value);
+
+        title.value = '';
+        estSession.value = 1;
+        note.value = '';
+
+        const li = document.createElement('li');
+
+        li.innerHTML = createTaskItem(taskItem);
+        li.classList.add('task__item');
+
+        if (TaskItem.id === 0)
+            li.classList.add('active');
+    
+        li.dataset.index = TaskItem.id;
+        TaskItem.id += 1;
+
+        taskList.appendChild(li);
+
+        closeForm();
+
     } else if (e.target.closest('#add-note-btn')) {
 
         if (noteInput.style.display === 'none')
             noteInput.style.display = 'block';
         else 
             noteInput.style.display = 'none';
-
-
     } else if (e.target.closest('#add-pj-btn')) {
         console.log(e.target);
     } else if (e.target.closest('#increase-btn')) {
@@ -358,3 +469,13 @@ settingsNavButton.addEventListener('click', function() {
 })
 
 timerForm.addEventListener('click', handleTimerForm)
+
+
+// CRUD task item 
+
+// delete and update task item 
+const taskList = document.querySelector('.task__list');
+
+taskList.addEventListener('click', function(e) {
+    console.log(e.target);
+})
