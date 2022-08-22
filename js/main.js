@@ -10,6 +10,10 @@ const addTaskForm = document.querySelector('.task__form');
 const saveTaskBtn = document.getElementById("save-form-btn");
 const cancelTaskBtn = document.getElementById("cancel-form-btn");
 
+const reportNavButton = document.getElementById('report-btn');
+const settingsNavButton = document.getElementById('settings-btn');
+const loginNavButton = document.getElementById('login-btn');
+
 
 let myCountdownInterval;
 
@@ -274,10 +278,7 @@ function closeForm() {
     addTaskButton.style.display = 'block';
 }
 
-addTaskButton.addEventListener('click', openForm);
-
-addTaskForm.addEventListener('click', function(e) {
-
+function handleTaskOperation(e) {
     const sessionInput = document.querySelector('#session-input');
     const noteInput = document.querySelector('#note');
 
@@ -303,4 +304,29 @@ addTaskForm.addEventListener('click', function(e) {
             sessionInput.value = parseInt(sessionInput.value) - 1;
         }
     }
+}
+
+addTaskButton.addEventListener('click', openForm);
+
+addTaskForm.addEventListener('click', handleTaskOperation)
+
+
+// setting time form 
+
+function turnOverlayOn() {
+    const overlay = document.getElementById("overlay");
+
+    overlay.style.display = 'block';
+}
+
+function turnOverlayOff() {
+    const overlay = document.getElementById("overlay");
+
+    overlay.style.display = 'none';
+}
+settingsNavButton.addEventListener('click', function() {
+    turnOverlayOn();
+    const timerForm = document.getElementById('setting-timer-form');
+
+    timerForm.style.display = 'block';
 })

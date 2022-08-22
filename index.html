@@ -15,6 +15,8 @@
 </head>
 <body>
 
+    <div id="overlay"></div>
+
 
 
     <div class="main-section main-bg-tomato">
@@ -25,17 +27,70 @@
             </div>
     
             <div class="nav-menu">
-                <button class="btn-bg-pink btn-sm-icon nav-button">
+                <button class="btn-bg-pink btn-sm-icon nav-button" id="report-btn">
                     <i class="fa-solid fa-chart-simple"></i> Report
                 </button>
 
-                <button class="btn-bg-pink btn-sm-icon nav-button">
+                <button class="btn-bg-pink btn-sm-icon nav-button" id="settings-btn">
                     <i class="fa-solid fa-gear"></i> Settings
                 </button>
 
-                <button class="btn-bg-pink btn-sm-icon nav-button">
+                <button class="btn-bg-pink btn-sm-icon nav-button" id="login-btn">
                     <i class="fa-solid fa-circle-user"></i> Login
                 </button>
+            </div>
+        </div>
+
+        <div id="setting-timer-form" class="timer-form">
+            <div class="timer-form__title">
+                <h3>TIMER SETTING</h3>
+
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+    
+            <div class="timer-form__clock timer-form__row">
+                <h5>Time (minutes)</h5>
+
+                <div class="timer-form__session">
+                    <div class="timer-form__session__item">
+                        <p>Pomodoro</p>
+                        <input type="number" value="25">
+                    </div>
+
+                    <div class="timer-form__session__item">
+                        <p>Short Break</p>
+                        <input type="number" value="5">
+                    </div>
+
+                    <div class="timer-form__session__item">
+                        <p>Long Break</p>
+                        <input type="number" value="15">
+                    </div>
+                </div>
+            </div>
+    
+            <div class="timer-form__start-break timer-form__row">
+                <h5>Auto start Breaks ?</h5>
+
+                <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+    
+            <div class="timer-form__start-pomo timer-form__row">
+                <h5>Auto start Pomodoro ?</h5>
+
+                <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+    
+            <div class="timer-form__long-break-interval timer-form__row">
+                <h5>Long Break interval</h5>
+
+                <input type="number" value="4">
             </div>
         </div>
 
