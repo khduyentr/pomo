@@ -10,14 +10,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;400&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/fbf118939f.js" crossorigin="anonymous"></script>
 
+
     <link rel="stylesheet" href="css/style.css">
     <title>Pomodoro</title>
 </head>
 <body>
 
     <div id="overlay"></div>
-
-
 
     <div class="main-section main-bg-tomato">
 
@@ -141,11 +140,24 @@
             <div class="tasks__adding">
 
                 <ul class="task__list">
-                    <li class="task__item">
+                    <li class="task__item active">
 
                         <span class="task__item__left">
                             <i class="fa-solid fa-circle-check"></i>
                             <p class="task__item__title">Example task 2</p>
+                        </span>
+
+                        <span class="task__item__right">
+                            <p class="task__item__section"><span class="task__item__section--done">0</span> / 1</p>
+                            <i class="fa-solid fa-ellipsis-vertical fa-1.5x"></i>
+                        </span>
+                    </li>
+
+                    <li class="task__item">
+
+                        <span class="task__item__left">
+                            <i class="fa-solid fa-circle-check"></i>
+                            <p class="task__item__title">Example task 1</p>
                         </span>
 
                         <span class="task__item__right">

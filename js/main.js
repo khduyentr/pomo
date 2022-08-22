@@ -215,7 +215,6 @@ function addPomoTheme() {
 }
 
 function handleShortBreakUpdate() {
-    console.log('wut');
 
     if (currentTab === pomoTabName) {
         removePomoTheme();
@@ -231,7 +230,6 @@ function handleShortBreakUpdate() {
 }
 
 function handleLongBreakUpdate() {
-    console.log('wut');
 
     if (currentTab === pomoTabName) {
         removePomoTheme();
@@ -247,7 +245,6 @@ function handleLongBreakUpdate() {
 }
 
 function handlePomoUpdate() {
-    console.log('wut');
     if (currentTab === longbreakTabName) {
         removeLongBreakTheme();
     } 
@@ -258,7 +255,7 @@ function handlePomoUpdate() {
     currentTab = pomoTabName;
 
     pauseClock();
-    resetClock(); 
+    resetClock(startingMinutes); 
 }
 
 shortbreakButton.addEventListener("click", handleShortBreakUpdate);
@@ -307,7 +304,6 @@ function handleTaskOperation(e) {
 }
 
 addTaskButton.addEventListener('click', openForm);
-
 addTaskForm.addEventListener('click', handleTaskOperation)
 
 
@@ -315,18 +311,50 @@ addTaskForm.addEventListener('click', handleTaskOperation)
 
 function turnOverlayOn() {
     const overlay = document.getElementById("overlay");
-
     overlay.style.display = 'block';
 }
 
 function turnOverlayOff() {
     const overlay = document.getElementById("overlay");
-
     overlay.style.display = 'none';
 }
+
+// continue to be improved
+function handleTimerForm(e) {
+    if (e.target.closest('.fa-xmark')) {
+
+        // get time session 
+        const timerSessions = Array.from(document.querySelectorAll('.timer-form__session__item input'));
+
+        startingMinutes = parseInt(timerSessions[0].value);
+        shortbreakTime = parseInt(timerSessions[1].value);
+        longbreakTime = parseInt(timerSessions[2].value);
+
+        switch (currentTab) {
+            case pomoTabName:
+                pauseClock();
+                resetClock(startingMinutes); 
+                break;
+            case longbreakTabName:
+                pauseClock();
+                resetClock(longbreakTime); 
+                break;
+            case shortbreakTabName:
+                pauseClock();
+                resetClock(shortbreakTabName); 
+                break;
+        }
+
+        timerForm.style.display = 'none';
+        turnOverlayOff();       
+    }
+}
+
+const timerForm = document.getElementById('setting-timer-form');
+
 settingsNavButton.addEventListener('click', function() {
     turnOverlayOn();
-    const timerForm = document.getElementById('setting-timer-form');
-
     timerForm.style.display = 'block';
 })
+
+timerForm.addEventListener('click', handleTimerForm)
