@@ -32,13 +32,23 @@ class TaskItem {
     #estSession;
     #note = '';
     #doneSession = 0;
+    #isDone = false;
 
     static id = 0;
 
-    constructor(title, estSession, note = '') {
+    constructor(title, estSession, note = '', isDone = false) {
         this.#title = title;
         this.#estSession = estSession;
         this.#note = note;
+        this.#isDone = isDone;
+    }
+
+    get isDone() {
+        return this.#isDone;
+    }
+
+    set done(msg) {
+        this.#isDone = msg;
     }
 
     get doneSession() {
@@ -156,6 +166,7 @@ const longbreakButton = document.getElementById("longbreak-tab-btn");
 
 const mainNav = document.querySelector(".main-nav");
 const noteHashtag = document.querySelector("#hashtag-note");
+const noteMessage = document.querySelector(".note-message");
 const taskTitle = document.querySelector(".tasks__title");
 
 // 3 nav button
@@ -387,8 +398,11 @@ function handleTaskOperation(e) {
         li.innerHTML = createTaskItem(taskItem);
         li.classList.add('task__item');
 
-        if (TaskItem.id === 0)
+        if (TaskItem.id === 0) {
             li.classList.add('active');
+            noteMessage.innerText = taskItem.title;
+        }
+            
     
         li.dataset.index = TaskItem.id;
         TaskItem.id += 1;
@@ -475,7 +489,54 @@ timerForm.addEventListener('click', handleTimerForm)
 
 // delete and update task item 
 const taskList = document.querySelector('.task__list');
+const taskItems = taskList.querySelectorAll('.task__item');
+
+function getParent(element, selector) {
+    while (element.parentElement) {
+        if (element.parentElement.matches(selector)) {
+            return element.parentElement;
+        }
+
+        element = element.parentElement;
+    }
+}
+
+function openFormInTask(li) {
+    addTaskForm.classList.add('form-active');
+    addTaskForm.style.display = 'block';
+    //addTaskButton.style.display = 'none';
+
+    li.style.display = 'none';
+}
+
 
 taskList.addEventListener('click', function(e) {
-    console.log(e.target);
+    
+    if (e.target.closest('.fa-circle-check')) {
+        const checkIcon = e.target; 
+        const li = getParent(checkIcon, '.task__item');
+        const title = li.querySelector('.task__item__title');
+
+        if (checkIcon.classList.contains('done')) {
+            checkIcon.classList.remove('done');
+            title.classList.remove('done');            
+        } else {
+            checkIcon.classList.add('done');
+            title.classList.add('done');
+        }
+    } else if (e.target.closest('.fa-ellipsis-vertical')) {
+        const li = getParent(e.target, '.task__item');
+        
+    } else {
+        const li = e.target.closest('.task__item');
+
+        if (li.classList.contains('active')) 
+            return;
+
+        const title = li.querySelector('.task__item__title');
+        const activeTask = taskList.querySelector('.task__item.active');
+        activeTask.classList.remove('active');
+        li.classList.add('active');
+        noteMessage.innerText = title;
+    }
 })

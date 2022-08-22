@@ -390,6 +390,7 @@ input:checked + .slider:before {
     display: inline;
 }
 
+
 .task__item.active {
     border-left: 5px solid black !important;
 }
@@ -401,8 +402,24 @@ input:checked + .slider:before {
     margin-left: 10px;
 }
 
+.task__list .task__item .task__item__title.done{
+    color: #bbbbbc;
+    font-weight: bold;
+    font-size: 17px;
+    margin-left: 10px;
+    text-decoration: line-through;
+}
+
 .task__item__left i{
     color: #dfdfdf;
+}
+
+.task__item__left i.done{
+    color: #d95550;
+}
+
+.task__item__left i:hover{
+    opacity: 0.5;
 }
 
 .task__item__right{
