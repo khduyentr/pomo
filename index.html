@@ -98,6 +98,29 @@
                             <i class="fa-solid fa-ellipsis-vertical fa-1.5x"></i>
                         </span>
                     </li>
+
+                    <li class="task__item">
+
+                        <div>
+                            <span class="task__item__left">
+                                <i class="fa-solid fa-circle-check"></i>
+                                <p class="task__item__title">Example task 3</p>
+                            </span>
+    
+                            <span class="task__item__right">
+                                <p class="task__item__section"><span class="task__item__section--done">0</span> / 1</p>
+                                <i class="fa-solid fa-ellipsis-vertical fa-1.5x"></i>
+                            </span>
+                        </div>
+
+
+                        <div class="task__item__note">
+                            <p>01010101010</p>
+                        </div>
+
+
+                    </li>
+
                 </ul>
 
                 <button class="btn-xl btn-bg-dark-tomato" id="ask-task-btn">
@@ -109,25 +132,40 @@
 
                     <div class="task__form__info">
                         <div>
-                            <input type="text" placeholder="What are you working on ?">
+                            <input type="text" placeholder="What are you working on ?" id="title-input">
                         </div>
     
                         <div>
                             <label>Est Pomodoros</label>
-                            <input type="number" placeholder="1">
+                            <input type="number" value="1" id="session-input">
+
+                            <a class="icon-btn" id="increase-btn">
+                                <i class="fa-solid fa-caret-up"></i>
+                            </a>
+
+                            <a class="icon-btn" id="decrease-btn">
+                                <i class="fa-solid fa-caret-down"></i>
+                            </a>
                         </div>
     
+                        <div class="form-note-area" id="note">
+                            <textarea placeholder="Some notes"></textarea>
+                        </div>
+
                         <div>
-                            <p>+ Add Note</p>
-                            <p>+ Add Project</p>
+                            <p id="add-note-btn">+ Add Note</p>
+                            <p id="add-pj-btn">+ Add Project</p>  <i class="fa-solid fa-lock lock"></i>
                         </div>
                     </div>
 
-                    <div class="task__form__bottom">
-                        <button class="btn-sm">Cancel</button>
-                        <button class="btn-sm">Save</button>
-                    </div>
+                    
 
+                    <div class="task__form__bottom">
+                        <div class="task__form__bottom__buttons">
+                            <a class="btn-md btn-bg-transparent" id="cancel-form-btn">Cancel</a>
+                            <a class="btn-md btn-bg-gray" id="save-form-btn">Save</a>
+                        </div>
+                    </div>
 
                 </form>
 

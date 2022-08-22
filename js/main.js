@@ -1,10 +1,15 @@
 const countdownText = document.getElementById("countdown-text");
 const countdownBtn = document.getElementById("countdown-btn");
 
+
 const mainSection = document.querySelector(".main-section");
 const clockWrapper = document.querySelector(".clock-wrapper");
 
-const askTaskButton = document.getElementById("ask-task-btn");
+const addTaskButton = document.getElementById("ask-task-btn");
+const addTaskForm = document.querySelector('.task__form');
+const saveTaskBtn = document.getElementById("save-form-btn");
+const cancelTaskBtn = document.getElementById("cancel-form-btn");
+
 
 let myCountdownInterval;
 
@@ -113,7 +118,7 @@ let currentTab = pomoTabName;
 // remove theme 
 function removePomoTheme() {
     pomoButton.classList.remove("active-tomato");
-    askTaskButton.classList.remove("btn-bg-dark-tomato");
+    addTaskButton.classList.remove("btn-bg-dark-tomato");
     mainSection.classList.remove("main-bg-tomato");
     clockWrapper.classList.remove("clock-bg-tomato");
     countdownBtn.classList.remove("pomo-btn");
@@ -128,7 +133,7 @@ function removePomoTheme() {
 
 function removeLongBreakTheme() {
     longbreakButton.classList.remove("active-blue");
-    askTaskButton.classList.remove("btn-bg-dark-blue");
+    addTaskButton.classList.remove("btn-bg-dark-blue");
     mainSection.classList.remove("main-bg-blue");
     clockWrapper.classList.remove("clock-bg-blue");
     countdownBtn.classList.remove("longbreak-btn");
@@ -144,7 +149,7 @@ function removeLongBreakTheme() {
 
 function removeShortBreakTheme() {
     shortbreakButton.classList.remove("active-green");
-    askTaskButton.classList.remove("btn-bg-dark-green");
+    addTaskButton.classList.remove("btn-bg-dark-green");
     mainSection.classList.remove("main-bg-green");
     clockWrapper.classList.remove("clock-bg-green");
     countdownBtn.classList.remove("shortbreak-btn");
@@ -160,7 +165,7 @@ function removeShortBreakTheme() {
 // add theme 
 function addShortBreakTheme() {
     shortbreakButton.classList.add("active-green");
-    askTaskButton.classList.add("btn-bg-dark-green");
+    addTaskButton.classList.add("btn-bg-dark-green");
     mainSection.classList.add("main-bg-green");
     clockWrapper.classList.add("clock-bg-green");
     countdownBtn.classList.add("shortbreak-btn");
@@ -175,7 +180,7 @@ function addShortBreakTheme() {
 
 function addLongBreakTheme() {
     longbreakButton.classList.add("active-blue");
-    askTaskButton.classList.add("btn-bg-dark-blue");
+    addTaskButton.classList.add("btn-bg-dark-blue");
     mainSection.classList.add("main-bg-blue");
     clockWrapper.classList.add("clock-bg-blue");
     countdownBtn.classList.add("longbreak-btn");
@@ -191,7 +196,7 @@ function addLongBreakTheme() {
 
 function addPomoTheme() {
     pomoButton.classList.add("active-tomato");
-    askTaskButton.classList.add("btn-bg-dark-tomato");
+    addTaskButton.classList.add("btn-bg-dark-tomato");
     mainSection.classList.add("main-bg-tomato");
     clockWrapper.classList.add("clock-bg-tomato");
     countdownBtn.classList.add("pomo-btn");
@@ -206,6 +211,8 @@ function addPomoTheme() {
 }
 
 function handleShortBreakUpdate() {
+    console.log('wut');
+
     if (currentTab === pomoTabName) {
         removePomoTheme();
     } 
@@ -220,6 +227,8 @@ function handleShortBreakUpdate() {
 }
 
 function handleLongBreakUpdate() {
+    console.log('wut');
+
     if (currentTab === pomoTabName) {
         removePomoTheme();
     } 
@@ -234,6 +243,7 @@ function handleLongBreakUpdate() {
 }
 
 function handlePomoUpdate() {
+    console.log('wut');
     if (currentTab === longbreakTabName) {
         removeLongBreakTheme();
     } 
@@ -249,4 +259,48 @@ function handlePomoUpdate() {
 
 shortbreakButton.addEventListener("click", handleShortBreakUpdate);
 longbreakButton.addEventListener("click", handleLongBreakUpdate);
-pomoButton.addEventListener("click", handlePomoUpdate)
+pomoButton.addEventListener("click", handlePomoUpdate);
+
+
+function openForm() {
+    addTaskForm.classList.add('form-active');
+    addTaskForm.style.display = 'block';
+    addTaskButton.style.display = 'none';
+}
+
+function closeForm() {
+    addTaskForm.classList.remove('form-active');
+    addTaskForm.style.display = 'none';
+    addTaskButton.style.display = 'block';
+}
+
+addTaskButton.addEventListener('click', openForm);
+
+addTaskForm.addEventListener('click', function(e) {
+
+    const sessionInput = document.querySelector('#session-input');
+    const noteInput = document.querySelector('#note');
+
+
+    if (e.target.closest('#cancel-form-btn')) {
+        closeForm();
+    } else if (e.target.closest('#save-form-btn')) {
+        console.log(e.target);
+    } else if (e.target.closest('#add-note-btn')) {
+
+        if (noteInput.style.display === 'none')
+            noteInput.style.display = 'block';
+        else 
+            noteInput.style.display = 'none';
+
+
+    } else if (e.target.closest('#add-pj-btn')) {
+        console.log(e.target);
+    } else if (e.target.closest('#increase-btn')) {
+        sessionInput.value = parseInt(sessionInput.value) + 1;
+    } else if (e.target.closest('#decrease-btn')) {
+        if (parseInt(sessionInput.value) > 1) {
+            sessionInput.value = parseInt(sessionInput.value) - 1;
+        }
+    }
+})

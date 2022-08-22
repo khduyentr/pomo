@@ -245,7 +245,7 @@ ul li{
 .task__item__right{
     position: absolute;
     right: 10px;
-    top: 50%;
+    top: 1.75em;
 
     transform: translate(-50%, -50%);
 }
@@ -256,9 +256,146 @@ ul li{
     font-weight: bold;
 }
 
+.task__item__note{
+    background-color: #fcf8de;
+    color: black;
+    margin-top: 10px;
+    margin-left: 25px;
+
+    padding: 0.75em;
+
+
+    border-radius: 5px;
+}
+
+
 .task__item__right .task__item__section .task__item__section--done {
     font-size: 17px;
 }
+
+.task__form{
+    background-color: white;
+    margin-top: 15px;
+    border-radius: 10px;
+    line-height: 2.5rem;
+    display: none;
+
+    z-index: 3;
+}
+
+.task__form__info {
+    padding: 0 1.25rem;
+    padding-top: 2rem;
+    padding-bottom: 1rem;
+}
+
+.task__form__info label{
+    display: block;
+    font-weight: bold;
+    font-size: 17px;
+    color:#555555;
+}
+
+.task__form__info input[type="text"] {
+    font-size: 25px;
+    color: #595c5f;
+    font-weight: 600;
+
+    width: 100%;
+    max-lines: 1;
+    border: none;
+}
+
+.task__form__info input[type="text"]:focus{
+    border: none;
+    outline: none;
+}
+
+.task__form__info input[type="text"]::placeholder{
+    color: #e3dddd;
+    font-style: italic;
+    font-weight: bold;
+}
+
+.task__form__info input[type="number"]{
+    background-color: #efefef;
+    color: #555555;
+    font-size: 15px;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    width: 80px;
+    box-sizing: border-box;
+    padding: 0.75rem 1rem;
+
+    margin-right: 10px;
+}
+
+.task__form__info input[type="number"]::-webkit-outer-spin-button,
+.task__form__info input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.task__form__info p{
+    display: inline;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: underline;
+    color: #949494;
+
+    cursor: pointer;
+    
+}
+
+.task__form__info .lock {
+    color: #949494;
+
+}
+
+.form-note-area textarea::-webkit-outer-spin-button,
+.form-note-area textarea::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.form-note-area textarea{
+    width: 100%;
+    height: 80px;
+    resize: none;
+    font-family: 'Nunito';
+    font-size: 16px;
+
+    background-color: #efefef;
+    border-radius: 5px;
+
+    border:none;
+    outline: none;
+
+    box-sizing: border-box;
+    padding: 0.75em;
+
+    margin-top: 30px;
+
+    display: block;
+}
+
+.task__form__bottom{
+    background-color:#efefef;
+    padding: 1em;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.task__form__bottom a{
+    cursor: pointer;
+}
+
 
 .icon-plus{
     margin-right: 5px;
@@ -269,6 +406,11 @@ ul li{
 .btn-sm{
     font-size: 16px;
     padding: 3px 6px;
+    border-radius: 3px;
+}
+
+.btn-md{
+    padding: 12px 18px;
     border-radius: 3px;
 }
 
@@ -293,7 +435,6 @@ ul li{
     background-color: transparent;
     border: none;
     color: white;
-
 }
 
 .btn-bg-white{
@@ -357,6 +498,24 @@ ul li{
     color: #d8e2e9;
 }
 
+.icon-btn{
+    background-color: white;
+    border-radius: 5px;
+    color: #757575;
+    padding: 0.6rem 0.7rem;
+
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+    margin-left: 5px;
+
+    cursor: pointer;
+}
+
+#add-pj-btn {
+    margin-left: 10px;
+}
+
 
 
 #countdown-btn{
@@ -374,10 +533,19 @@ ul li{
     box-shadow: none;
 }
 
-/* #ask-task-btn{
-    border-radius: 10px;
-    border: 3px dashed #edc0be;
-} */
+#cancel-form-btn{
+    color: #929295;
+    font-size: 14px;
+    font-weight: bold;
+
+}
+
+#save-form-btn{
+    border:none;
+    font-size: 14px;
+
+}
+
 
 .btn-3d-white{
     box-shadow: 0px 8px 0px #ebebeb;
@@ -399,6 +567,14 @@ ul li{
     background-color:#6693b4;
     color: white;
 }
+
+.btn-bg-gray {
+    background-color:#b1b1b1;
+    color: white;
+
+}
+
+
 
 
 .btn-sm-icon{
