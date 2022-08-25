@@ -14,6 +14,8 @@ const reportNavButton = document.getElementById('report-btn');
 const settingsNavButton = document.getElementById('settings-btn');
 const loginNavButton = document.getElementById('login-btn');
 
+let allTaskList = [];
+
 
 let myCountdownInterval;
 
@@ -389,6 +391,8 @@ function handleTaskOperation(e) {
             estSession.value, 
             note.value.length === 0 ? '' : note.value);
 
+        allTaskList.push(taskItem);
+
         title.value = '';
         estSession.value = 1;
         note.value = '';
@@ -526,7 +530,8 @@ taskList.addEventListener('click', function(e) {
         }
     } else if (e.target.closest('.fa-ellipsis-vertical')) {
         const li = getParent(e.target, '.task__item');
-        
+
+        openFormInTask(li);
     } else {
         const li = e.target.closest('.task__item');
 
@@ -540,3 +545,7 @@ taskList.addEventListener('click', function(e) {
         noteMessage.innerText = title;
     }
 })
+
+
+// login UI -> fetch API
+// est time done UI
