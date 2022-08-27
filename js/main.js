@@ -549,3 +549,8 @@ taskList.addEventListener('click', function(e) {
 
 // login UI -> fetch API
 // est time done UI
+
+// move to login page 
+loginNavButton.addEventListener('click', function open_win() {
+    window.open('../login.html')
+})

@@ -1,0 +1,228 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+:root{
+    --primary-tomato: #d95550;
+    --secondary-tomato:#dd6662;
+    --dark-tomato: #bc5753;
+
+    --primary-green: #4c9195;
+    --secondary-green: #5e9ca0;
+
+    --primary-blue: #457ca3;
+    --secondary-blue: #5889ac;
+
+}
+
+body{
+    font-family: 'Nunito', sans-serif;
+    width: 100%;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+ul li{
+    margin: 0;
+    padding: 0;
+}
+
+.main-section{
+    background-color: var(--primary-tomato);
+    height: 100vh;
+    width: 100%;
+
+    position: relative;
+}
+
+.branding{
+    font-size:20px;
+    width: 100%;
+    color: white;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding-top: 4em;
+}
+
+.branding i{
+    font-size: 50px;
+}
+
+.branding h1{
+    display: inline;
+    margin-left: 10px;
+}
+
+.title{
+    display: flex;
+    justify-content: center;
+    margin: 15px 0;
+    color: #f6d4c8;
+
+    font-size: 15px;
+}
+
+.login-form{
+    background-color: white;
+    width: 330px;
+
+    position: absolute;
+    top: 55%;
+    left: 50%;
+
+    border-radius: 10px;
+
+    transform: translate(-50%, -50%);
+    padding: 1em 0.75em;
+}
+
+.login-form__google{
+    position: relative;
+}
+
+.login-form__span{
+
+    background-color: white;
+    text-align: center;
+    width: 50px;
+
+    position: absolute;
+    top: 96%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+
+    color: #dce0e4;
+}
+
+.login-form__label{
+    text-transform: uppercase;
+    color: #c4c8cd;
+    font-weight: bold;
+    font-size: 12px;
+
+    display: block;
+
+    margin-bottom: 8px;
+}
+
+.login-form input{
+    width: 100%;
+    box-sizing: border-box;
+    background-color:#efefef;
+    padding: 0.9em 0.5em;
+    font-family: 'Nunito';
+    font-size: 15px;
+
+    border: none; 
+    outline: none;
+
+    border-radius: 5px;
+
+    margin-bottom: 15px;
+}
+
+.login-form button{
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+
+    padding: 0.9em 0.5em;
+    font-family: 'Nunito';
+    font-size: 15px;
+}
+
+#login-email-btn{
+    border-radius:5px;
+    margin-top: 20px;
+
+    margin-bottom: 15px;
+}
+
+
+.icon{
+    width: 13px;
+}
+
+.msg-container{
+    position: absolute;
+    top: 92%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.msg-container p{
+    display: block;
+    color: #f6d4c8;
+    font-size: 17px;
+
+    margin-bottom: 10px;
+}
+
+.msg-container a{
+    color: white;
+    text-decoration: underline;
+    font-weight: bold;
+    font-size: 15px;
+    letter-spacing: 1px;
+}
+
+.btn-bg-dark {
+    background-color: #383838;
+    color: white;
+}
+
+.btn-shadow {
+    background-color: white;
+    color: #383838;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+    opacity: 0.9;
+}
+
+.line{
+    margin: 30px 0;
+    width: 100%;
+    border-bottom: 1px solid #efefef;
+}
+
+.btn-shadow:hover{
+    opacity: 1;
+}
+
+
+.btn-shadow img,
+.btn-shadow p{
+    display: inline;
+}
+
+.btn-bg-trans{
+    background-color: transparent;
+    color: #a8a8a8;
+    text-decoration: underline;
+    font-size: 14px;
+    font-weight: bold;
+}
+
