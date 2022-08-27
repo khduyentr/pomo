@@ -344,7 +344,7 @@ function createTaskItem(taskObj) {
 
             <span class="task__item__right">
                 <p class="task__item__section"><span class="task__item__section--done">${taskObj.doneSession}</span> / <span class="task__item__section--est">${taskObj.estSession}</span></p>
-                <i class="fa-solid fa-ellipsis-vertical fa-1.5x"></i>
+                <i class="fa-solid fa-trash fa-1.5x"></i>
             </span>
         `
     } else {
@@ -357,7 +357,7 @@ function createTaskItem(taskObj) {
 
                 <span class="task__item__right">
                     <p class="task__item__section"><span class="task__item__section--done">${taskObj.doneSession}</span> / <span class="task__item__section--est">${taskObj.estSession}</span></p>
-                    <i class="fa-solid fa-ellipsis-vertical fa-1.5x"></i>
+                    <i class="fa-solid fa-trash fa-1.5x"></i>
                 </span>
             </div>
 
@@ -397,10 +397,12 @@ function handleTaskOperation(e) {
         estSession.value = 1;
         note.value = '';
 
+        // here
         const li = document.createElement('li');
 
         li.innerHTML = createTaskItem(taskItem);
         li.classList.add('task__item');
+        li.classList.add('item-' + TaskItem.id);
 
         if (TaskItem.id === 0) {
             li.classList.add('active');
@@ -412,6 +414,17 @@ function handleTaskOperation(e) {
         TaskItem.id += 1;
 
         taskList.appendChild(li);
+
+        // here
+        //console.log(taskItem);
+        var data = {
+            title: taskItem.title,
+            estSession: taskItem.estSession,
+            note: taskItem.note,
+            doneSession: taskItem.doneSession,
+            isDone: taskItem.isDone
+        }
+        postTaskItem(data);
 
         closeForm();
 
@@ -505,15 +518,6 @@ function getParent(element, selector) {
     }
 }
 
-function openFormInTask(li) {
-    addTaskForm.classList.add('form-active');
-    addTaskForm.style.display = 'block';
-    //addTaskButton.style.display = 'none';
-
-    li.style.display = 'none';
-}
-
-
 taskList.addEventListener('click', function(e) {
     
     if (e.target.closest('.fa-circle-check')) {
@@ -528,10 +532,10 @@ taskList.addEventListener('click', function(e) {
             checkIcon.classList.add('done');
             title.classList.add('done');
         }
-    } else if (e.target.closest('.fa-ellipsis-vertical')) {
+    } else if (e.target.closest('.fa-trash')) {
         const li = getParent(e.target, '.task__item');
 
-        openFormInTask(li);
+        handleDeleteTaskItem(li.dataset.index);
     } else {
         const li = e.target.closest('.task__item');
 
@@ -554,3 +558,83 @@ taskList.addEventListener('click', function(e) {
 loginNavButton.addEventListener('click', function open_win() {
     window.open('../login.html')
 })
+
+// API 
+var taskAPI = 'http://localhost:3000/tasks';
+
+function start() {
+    getTaskItems(function(tasks) {
+        renderTaskItem(tasks)
+    });
+}
+
+start();
+
+// crud 
+function getTaskItems(callback) {
+    fetch(taskAPI)
+        .then(function(response) {
+            return response.json();
+        })
+        .then(callback);
+}
+
+function renderTaskItem(tasks) {
+    const taskList = document.querySelector('.task__list');
+    tasks.forEach(function(taskItem) {
+        const li = document.createElement('li');
+
+        li.innerHTML = createTaskItem(taskItem);
+        li.classList.add('task__item');
+        li.classList.add('item-' + taskItem.id);
+
+        if (TaskItem.id === 0) {
+            li.classList.add('active');
+            noteMessage.innerText = taskItem.title;
+        }
+    
+        li.dataset.index = taskItem.id;
+        TaskItem.id = taskItem.id + 1;
+
+        taskList.appendChild(li);
+    })
+}
+
+function postTaskItem(data, callback) {
+    var options = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        }, 
+        body: JSON.stringify(data)
+    }
+    fetch(taskAPI, options).
+        then(function(response) {
+            return response.json();
+        })
+        .then(callback)
+}
+
+function handleDeleteTaskItem(taskId) {
+
+    var options = {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }
+    fetch(taskAPI + '/' + taskId, options).
+        then(function(response) {
+            return response.json();
+        })
+        .then(function() {
+            // getTaskItems(function(tasks) {
+            //     renderTaskItem(tasks)
+            // });
+            var task = document.querySelector('.item-' + taskId);
+            if (task) {
+                task.remove();
+            }
+        })
+
+}

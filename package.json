@@ -1,0 +1,23 @@
+{
+  "name": "pomo",
+  "version": "1.0.0",
+  "description": "little clone of pomofocus",
+  "main": "js/main.js",
+  "scripts": {
+    "start": "json-server --watch db.json",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/khduyentr/pomo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/khduyentr/pomo/issues"
+  },
+  "homepage": "https://github.com/khduyentr/pomo#readme",
+  "dependencies": {
+    "json-server": "^0.17.0"
+  }
+}
