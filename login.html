@@ -69,7 +69,14 @@
                 <p class="msg-container__msg">Do not have an account ?</p>
                 <a class="msg-container__link">Create account</a>
             </div>
-
         </div>
+
+        <script type="text/javascript">
+            var branding = document.querySelector('.branding');
+            branding.onclick = function open_win() {
+                window.open('../index.html')
+                window.close(this);
+            }
+        </script>
     </body>
 </html>

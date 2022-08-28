@@ -333,6 +333,14 @@ function closeForm() {
     addTaskButton.style.display = 'block';
 }
 
+function scrollElementToView(element) {
+    element.scrollIntoView({
+        behavior: 'auto',
+        block: 'center',
+        inline: 'center'
+    })
+}
+
 // create an task item li 
 function createTaskItem(taskObj) {
     if (taskObj.note === '') {
@@ -344,7 +352,7 @@ function createTaskItem(taskObj) {
 
             <span class="task__item__right">
                 <p class="task__item__section"><span class="task__item__section--done">${taskObj.doneSession}</span> / <span class="task__item__section--est">${taskObj.estSession}</span></p>
-                <i class="fa-solid fa-trash fa-1.5x"></i>
+                <i class="fa-solid fa-trash fa-1.5x delete-icon"></i>
             </span>
         `
     } else {
@@ -357,7 +365,7 @@ function createTaskItem(taskObj) {
 
                 <span class="task__item__right">
                     <p class="task__item__section"><span class="task__item__section--done">${taskObj.doneSession}</span> / <span class="task__item__section--est">${taskObj.estSession}</span></p>
-                    <i class="fa-solid fa-trash fa-1.5x"></i>
+                    <i class="fa-solid fa-trash fa-1.5x delete-icon"></i>
                 </span>
             </div>
 
@@ -445,7 +453,11 @@ function handleTaskOperation(e) {
     }
 }
 
-addTaskButton.addEventListener('click', openForm);
+//addTaskButton.addEventListener('click', openForm);
+addTaskButton.addEventListener('click', function() {
+    scrollElementToView(addTaskButton);
+    openForm();
+})
 addTaskForm.addEventListener('click', handleTaskOperation)
 
 
@@ -525,6 +537,7 @@ taskList.addEventListener('click', function(e) {
         const li = getParent(checkIcon, '.task__item');
         const title = li.querySelector('.task__item__title');
 
+
         if (checkIcon.classList.contains('done')) {
             checkIcon.classList.remove('done');
             title.classList.remove('done');            
@@ -542,10 +555,13 @@ taskList.addEventListener('click', function(e) {
         if (li.classList.contains('active')) 
             return;
 
-        const title = li.querySelector('.task__item__title');
+        const left = li.querySelector('.task__item__left');
+        const title = left.querySelector('.task__item__title').innerText;
+
         const activeTask = taskList.querySelector('.task__item.active');
         activeTask.classList.remove('active');
         li.classList.add('active');
+
         noteMessage.innerText = title;
     }
 })
@@ -556,7 +572,8 @@ taskList.addEventListener('click', function(e) {
 
 // move to login page 
 loginNavButton.addEventListener('click', function open_win() {
-    window.open('../login.html')
+    window.open('../login.html');
+    window.close(this);
 })
 
 // API 
@@ -628,9 +645,7 @@ function handleDeleteTaskItem(taskId) {
             return response.json();
         })
         .then(function() {
-            // getTaskItems(function(tasks) {
-            //     renderTaskItem(tasks)
-            // });
+
             var task = document.querySelector('.item-' + taskId);
             if (task) {
                 task.remove();
